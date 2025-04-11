@@ -1,6 +1,10 @@
-from app.api.transcriber_routes import transcriber_api
+from app.api.transciber_routes import transcriber_api
 from utils import preprocess_transcription
+import os, sys
+
 from logs.logger import log_event
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
 def transcribe_audio(file):
@@ -11,9 +15,9 @@ def transcribe_audio(file):
         log_event("Error", f"Connection to trancribier API failed: {e}")
 
     try:
-        text = preprocess_transcription
+        chunks = preprocess_transcription(text)
     except Exception as e:
         log_event("Error", f"preprocessing transcription failed: {e}")
         
 
-    return text
+    return chunks

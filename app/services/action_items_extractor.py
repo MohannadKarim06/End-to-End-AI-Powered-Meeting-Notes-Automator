@@ -1,5 +1,9 @@
-from app.api.action_items_routes import llm_api
+import os, sys
 
+from app.api.action_items_routes import llm_api
+from logs.logger import log_event
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 def extract_action_items(text):
 

@@ -1,9 +1,13 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import os, sys
+
 from logs.logger import log_event
 from app.services.transcriber import transcribe_audio
 from app.services.summarizer import summarize_text
-from app.services.aciton_items_extractor import extract_action_items
+from app.services.action_items_extractor import extract_action_items
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
 app = FastAPI()

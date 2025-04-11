@@ -12,7 +12,6 @@ tool = language_tool_python.LanguageTool('en-US')
 punc_model = PunctuationModel()
 
 
-
 def remove_filler_words(self, text):
 
     filler_words = ["um", "uh", "you know", "like", "I mean", "so", "well", "hmm", "er", "ah", "right", "okay", "actually", "basically", "kind of", "sort of", "literally", "totally", "just", "really", "yeah", "y'know", "yep", "mhm", "anyway", "see", "look", "listen", "I guess", "I think", "I suppose", "you see", "at the end of the day", "for sure", "in fact", "in general", "more or less", "that said", "to be honest", "to tell you the truth", "I'm telling you", "believe me", "seriously", "frankly", "honestly", "now", "then", "here", "there", "what's more", "furthermore", "moreover", "as a matter of fact", "by the way", "you know what I mean?", "am I right?", "does that make sense?", "got it?", "understand?", "you follow?", "anyways", "anywho", "indeed", "surely", "certainly", "absolutely", "without a doubt", "of course", "no doubt", "for example", "for instance", "in other words", "that is", "namely", "specifically", "in particular", "above all", "after all", "by all means", "in any case", "in short", "to sum up", "all in all", "as I was saying", "as you can see", "as it were", "if you will", "you could say", "one might say", "it's like", "it's as if", "it's just that", "it's worth noting", "it's important to remember", "let me see", "let me think", "hold on", "hang on", "wait a minute", "give me a second", "bear with me", "if I may", "if you don't mind", "if you will allow me", "if I remember correctly", "if I'm not mistaken"]
@@ -75,7 +74,7 @@ def remove_small_talk(text):
     ]
     for pattern in small_talk_patterns:
         text = re.sub(pattern, "", text, flags=re.IGNORECASE)
-    text = re.sub(r"\s+", " ", text).strip()  # Remove extra spaces
+    text = re.sub(r"\s+", " ", text).strip()  
     return text
 
 
@@ -85,7 +84,7 @@ def segment_sentences(text):
 
 
 def chunk_text(text, max_length=1024):
-    words = text.split()  # Tokenize by whitespace
+    words = text.split()  
     chunks = []
     
     for i in range(0, len(words), max_length):

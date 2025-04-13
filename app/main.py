@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File, HTTPException
 from pydantic import BaseModel
 import os, sys
 
@@ -12,15 +12,29 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 app = FastAPI()
 
-@app.post("/extract")
-def extract(file):
+@app.post("/transcribe")
+async def transcribe(file: UploadFile = File(...)):
+    temp_path = f"temp_audio/temp_{file.filename}"
+
+    with open(temp_path, "wb") as f:
+        f.write(await file.read())  
+
     try:
         log_event("Stage 1", "Audio transribtion started!")
-        text = transcribe_audio(file)
+        transcribtion = transcribe_audio(temp_path)
+        return {"transcribtion": transcribtion}
+
     except Exception as e:
         log_event("Error", f"Audio transcribion failed {e}")
-        raise e
 
+    finally:    
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
+            
+
+@app.post("/summarize")
+def summarize(text:str):
+    
     try:
         log_event("Stage 2", "Transcription summarization started!")
         summary = summarize_text(text)
@@ -29,15 +43,28 @@ def extract(file):
         log_event("Error", f"Transcription summarization failed {e}")
         raise e
 
+    
+    return {"summary": summary}
+
+
+@app.post("/action-items")
+def extract_action_items(summary:str):
+    
     try:
         log_event("Stage 3", "Action items extraction started!")
         action_items = extract_action_items(summary)
     except Exception as e:
         log_event("Error", f"Action items extraction failed {e}")
         raise e
+
+    
+    return {"action_items": action_items}
+
+
+
+
+
+
+
+
         
-
-    return {"summary": summary, "action_items": action_items}
-
-
-

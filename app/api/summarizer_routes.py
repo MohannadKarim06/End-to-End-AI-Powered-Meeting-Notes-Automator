@@ -2,7 +2,7 @@ import requests
 import os
 
 API_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
-API_TOKEN = os.getenv("HF_API_TOKEN")
+API_TOKEN = "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"
 
 headers = {
     "Authorization": f"Bearer {API_TOKEN}"
@@ -24,3 +24,4 @@ def summarization_api(text: str):
         raise Exception(f"Hugging Face Summarizer Error: {response.status_code} {response.text}")
 
     return response.json()[0]["summary_text"]
+

@@ -1,0 +1,5 @@
+2025-04-13 01:41:23,005 - INFO - Stage 1: Audio transribtion started!
+2025-04-13 01:41:39,618 - INFO - HTTP Request: POST https://api.assemblyai.com/v2/upload "HTTP/1.1 200 OK"
+2025-04-13 01:41:39,929 - INFO - HTTP Request: POST https://api.assemblyai.com/v2/transcript "HTTP/1.1 200 OK"
+2025-04-13 01:41:40,212 - INFO - HTTP Request: GET https://api.assemblyai.com/v2/transcript/ca97d87d-27b4-489a-9b42-310635636901 "HTTP/1.1 200 OK"
+2025-04-13 01:41:43,670 - INFO - HTTP Request: GET https://api.assemblyai.com/v2/transcript/ca97d87d-27b4-489a-9b42-310635636901 "HTTP/1.1 200 OK"

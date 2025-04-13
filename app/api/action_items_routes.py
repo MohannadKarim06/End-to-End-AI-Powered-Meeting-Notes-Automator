@@ -2,7 +2,7 @@ import requests
 import os
 
 API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1"
-API_TOKEN = os.getenv("HF_API_TOKEN")
+API_TOKEN = "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"
 
 headers = {
     "Authorization": f"Bearer {API_TOKEN}"
@@ -27,3 +27,5 @@ def llm_api(text: str):
         raise Exception(f"Hugging Face API Error: {response.status_code} {response.text}")
 
     return response.json()[0]["generated_text"].strip()
+
+

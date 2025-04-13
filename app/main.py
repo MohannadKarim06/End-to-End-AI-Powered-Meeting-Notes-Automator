@@ -48,11 +48,11 @@ def summarize(text:str):
 
 
 @app.post("/action-items")
-def extract_action_items(summary:str):
+def action_items(text:str):
     
     try:
         log_event("Stage 3", "Action items extraction started!")
-        action_items = extract_action_items(summary)
+        action_items = extract_action_items(text)
     except Exception as e:
         log_event("Error", f"Action items extraction failed {e}")
         raise e

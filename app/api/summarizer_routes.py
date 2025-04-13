@@ -12,9 +12,9 @@ def summarization_api(text: str):
     payload = {
         "inputs": text,
         "parameters": {
-            "min_length": 30,
+            "do_sample": False,
             "max_length": 200,
-            "do_sample": False
+            "min_length": 50
         }
     }
 

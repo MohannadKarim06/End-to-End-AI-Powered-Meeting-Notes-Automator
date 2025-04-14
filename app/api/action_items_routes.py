@@ -1,8 +1,8 @@
 import requests
 
 
-API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1"
-API_TOKEN = "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"
+API_URL = os.getenv("API_URL")
+API_TOKEN = os.getenv("API_TOKEN")
 
 headers = {
     "Authorization": f"Bearer {API_TOKEN}"

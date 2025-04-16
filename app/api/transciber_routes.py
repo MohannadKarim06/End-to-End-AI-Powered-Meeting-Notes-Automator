@@ -1,7 +1,7 @@
 import assemblyai as aai
 import os
 
-aai.settings.api_key = os.getenv("API_KEY_ASSEMBLY")
+aai.settings.api_key = os.getenv("ASSEMBLY_API_KEY")
 
 transcriber = aai.Transcriber()
 

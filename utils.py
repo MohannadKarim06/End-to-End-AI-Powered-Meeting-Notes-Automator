@@ -130,11 +130,6 @@ def preprocess_transcripts(text):
 
     return chunks
 
-text = "Okay hello everyone and welcome to the uh marketing strategy meeting for Q3 Um like Im really glad to see you all here today Uh so you know as you know weve been like working really hard on the uh the new product launch and um and uh you know were really excited about it So basically um today were gonna be discussing like the marketing plan for the uh for the next quarter Um so like Id like to start by um you know reviewing the uh the key objectives Um you know as you know we want to increase brand awareness you know and um drive sales and uh and uh you know and um you know build customer loyalty So like those are the uh the main goals you know Um so yeah I think um you know we have a really great plan in place you know and um Im confident that we can achieve these objectives Um so yeah Id like to um you know open it up for discussion now Um you know does anyone have any uh any questions or comments Also I wanted to add that we need to consider the competitive landscape and ensure our messaging stands out We should also explore new marketing channels like social media influencer collaborations and targeted advertising campaigns to reach a wider audience Additionally we must track and measure the effectiveness of our campaigns to optimize our strategies and maximize our return on investment This will involve monitoring key metrics like website traffic lead generation conversion rates and customer engagement We should also regularly review our progress and make adjustments as needed to ensure we are on track to achieve our goals Finally we must foster a culture of collaboration and innovation within the marketing team to continuously improve our processes and deliver exceptional results"
-
-
-print(preprocess_transcripts(text))
-
 
 
 

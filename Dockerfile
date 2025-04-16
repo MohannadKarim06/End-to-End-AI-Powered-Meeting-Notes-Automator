@@ -1,35 +1,25 @@
-# Base image
-FROM python:3.9-slim
+FROM python:3.10-slim
 
-# Set working directory
+ENV TRANSFORMERS_NO_GPU=true
+
 WORKDIR /app
 
-# Install system packages
+# System dependencies
 RUN apt-get update && apt-get install -y \
-    gcc \
     build-essential \
-    ffmpeg \
-    libsndfile1 \
+    libglib2.0-0 libsm6 libxext6 libxrender-dev \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y \
-    default-jre \
-    && rm -rf /var/lib/apt/lists/*
-
-
-# Copy dependencies
+# Install pip requirements (torch last to control its size)
 COPY requirements.txt .
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    pip install torch==2.2.2+cpu --index-url https://download.pytorch.org/whl/cpu
+# NOTE: We're installing torch from PyTorch's CPU-only wheel repo!
 
-# Install Python packages
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-
-# Copy project files
 COPY . .
 
-# Expose FastAPI port
 EXPOSE 8000
 
-# Start the FastAPI app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

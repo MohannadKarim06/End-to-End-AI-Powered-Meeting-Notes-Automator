@@ -1,7 +1,5 @@
 FROM python:3.10-slim
 
-ENV TRANSFORMERS_NO_GPU=true
-
 WORKDIR /app
 
 # System dependencies
@@ -14,9 +12,7 @@ RUN apt-get update && apt-get install -y \
 # Install pip requirements (torch last to control its size)
 COPY requirements.txt .
 RUN pip install --upgrade pip && \
-    pip install -r requirements.txt && \
-    pip install torch==2.2.2+cpu --index-url https://download.pytorch.org/whl/cpu
-# NOTE: We're installing torch from PyTorch's CPU-only wheel repo!
+    pip install -r requirements.txt
 
 COPY . .
 

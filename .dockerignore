@@ -1,0 +1,18 @@
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+
+# Logs, configs, and secrets
+*.log
+.env
+
+# Cached models/data
+nltk_data/
+.cache/
+language_tool_python/

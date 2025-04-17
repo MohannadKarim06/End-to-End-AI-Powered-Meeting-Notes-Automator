@@ -1,4 +1,5 @@
-FROM python:3.10-slim
+# 🛠️ Build stage: install dependencies and cleanup
+FROM python:3.10-slim AS builder
 
 WORKDIR /app
 
@@ -9,15 +10,25 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install pip requirements (torch last to control its size)
+# Install pip requirements with CPU-only torch
 COPY requirements.txt .
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
 
-RUN pip uninstall -y torch torchvision torchaudio && \
+RUN pip install --upgrade pip && \
+    pip install torch==2.2.2+cpu -f https://download.pytorch.org/whl/torch_stable.html && \
+    pip install -r requirements.txt && \
+    pip uninstall -y torch torchvision torchaudio && \
     pip install torch==2.2.2+cpu -f https://download.pytorch.org/whl/torch_stable.html
 
+# Copy app code
 COPY . .
+
+# 🧼 Final stage: minimal runtime image
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY --from=builder /usr/local /usr/local
+COPY --from=builder /app /app
 
 EXPOSE 8000
 

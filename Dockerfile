@@ -14,6 +14,9 @@ COPY requirements.txt .
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
+RUN pip uninstall -y torch torchvision torchaudio && \
+    pip install torch==2.2.2+cpu -f https://download.pytorch.org/whl/torch_stable.html
+
 COPY . .
 
 EXPOSE 8000

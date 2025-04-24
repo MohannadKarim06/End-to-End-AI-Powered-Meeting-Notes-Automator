@@ -1,16 +1,11 @@
-Absolutely — here’s a full, professional-grade `README.md` for your **Meeting Automater Project**, perfect for GitHub, Upwork, or showcasing to clients.
-
----
-
 ## 📋 Meeting Automater  
-**End-to-End NLP Pipeline (8/10 Project)**  
-> Upload a meeting audio file and get a full transcript, smart summary, and structured action items with owners and due dates — all in one click.
+**End-to-End NLP Pipeline**  
+> Upload a meeting audio file and get a smart summary, and structured action items with owners and due dates — all in one click.
 
 ---
 
 ### 🚀 Live Demo  
-- **Frontend (Streamlit)**: [your-ui-url.onrender.com](#)  
-- **Backend (FastAPI)**: [your-api-url.onrender.com/docs](#)
+- **Frontend (Streamlit)**: [https://meeting-notes-autometer.streamlit.app/](#)  
 
 ---
 
@@ -28,9 +23,9 @@ This project turns messy meeting audio into structured, actionable text. It comb
 
 ### ✅ Features
 
-- **Speech-to-text** using Google Speech API or Whisper (if extended)
+- **Speech-to-text** using Assembly AI
 - **Text cleanup**: filler removal, punctuation restoration, grammar/spell check
-- **Summarization** via Hugging Face Transformers (`bart-large-cnn`)
+- **Summarization** via Hugging Face API (`bart-large-cnn`)
 - **Task extraction** using Mistral (`mistralai/Mistral-7B-Instruct-v0.1`)
 - Streamlit UI for easy upload & result viewing
 - FastAPI backend for extensibility
@@ -45,13 +40,13 @@ Audio Upload (UI)
        ↓
 FastAPI: /extract
        ↓
-Speech Recognition (Google Speech API)
+Speech Recognition (Aseembly AI)
        ↓
 Text Preprocessing → Punctuation → Spelling Correction
        ↓
 Summarization via BART (Hugging Face Inference API)
        ↓
-Prompt to Mistral LLM (Hugging Face)
+Prompt to Mistral LLM (Together API)
        ↓
 → Summary + Action Items (JSON response)
 ```
@@ -62,33 +57,14 @@ Prompt to Mistral LLM (Hugging Face)
 
 | Layer           | Tool / Library                            |
 |------------------|--------------------------------------------|
-| Transcription    | `SpeechRecognition`, `pydub`, `Google STT` |
+| Transcription    | `Assembly AI` |
 | Preprocessing    | `nltk`, `spacy`, `deepmultilingualpunctuation`, `symspellpy` |
 | Summarization    | `facebook/bart-large-cnn` via Hugging Face API |
-| Task Extraction  | `mistralai/Mistral-7B-Instruct-v0.1` via Hugging Face API |
+| Task Extraction  | `mistralai/Mistral-7B-Instruct-v0.1` via Together API |
 | Backend API      | FastAPI + Pydantic                         |
 | Frontend UI      | Streamlit                                 |
 | Containerization | Docker                                     |
 | CI/CD            | GitHub Actions → Render                    |
-
----
-
-### 📁 Folder Structure
-
-```
-meeting-automater/
-├── app/                     # FastAPI API code
-│   ├── main.py              # API routes
-│   ├── pipeline.py          # Core logic for STT → Summary → Actions
-│   └── utils/               # Helpers: audio, cleaning, LLM, etc.
-├── ui/
-│   └── streamlit_ui.py      # Streamlit interface
-├── logs/                    # Logger output
-├── requirements.txt         # Python dependencies
-├── Dockerfile               # For containerization
-├── .github/workflows/       # CI/CD pipelines
-├── README.md
-```
 
 ---
 
@@ -108,12 +84,6 @@ pip install -r requirements.txt
 #### 3. Run backend API
 ```bash
 uvicorn app.main:app --reload
-```
-
-#### 4. Run UI
-```bash
-cd ui
-streamlit run streamlit_ui.py
 ```
 
 > Set your `API_URL` in the UI file or via `.env`
@@ -139,13 +109,13 @@ docker run -p 8000:8000 meeting-automater
   "action_items": [
     {
       "task": "Send client proposal",
-      "owner": "Alex",
-      "due_date": "Friday"
+      "assigned_to": "Alex",
+      "deadline": "Friday"
     },
     {
       "task": "Prepare demo slides",
-      "owner": "Nina",
-      "due_date": "Tomorrow"
+      "assigned_to": "Nina",
+      "deadline": "Tomorrow"
     }
   ]
 }
@@ -175,10 +145,8 @@ MISTRAL_URL=https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Ins
 ---
 
 ### ✍️ Author  
-**Your Name**  
-_Machine Learning Engineer • NLP Specialist_  
-[Portfolio](https://yourportfolio.com) • [LinkedIn](https://linkedin.com/in/yourname)
+**Mohannad Karim**  
+_NLP & Machine Learning Engineer | MLOps_  
+[Portfolio](https://www.upwork.com/freelancers/~01683e506def8e06a2?mp_source=share)
 
 ---
-
-Let me know if you'd like a short project blurb for LinkedIn or Upwork, or a demo script/video guide to pair with this. This project is 🔥.
